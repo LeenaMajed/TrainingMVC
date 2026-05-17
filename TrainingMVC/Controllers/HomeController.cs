@@ -34,6 +34,56 @@ namespace TrainingMVC.Controllers
         {
             return View();
         }
+        public IActionResult Product()
+        {
+            List<Product> product = new List<Product>();
+
+            product.Add(new Product
+            {
+                ProductID = 1,
+                ProductName = "Phone",
+                Price = 100.5m,
+                Quantity = 1,
+                Category = "Electronics"
+            });
+
+            product.Add(new Product
+            {
+                ProductID = 2,
+                ProductName = "Laptop",
+                Price = 550.75m,
+                Quantity = 2,
+                Category = "Electronics"
+            });
+
+            product.Add(new Product
+            {
+                ProductID = 3,
+                ProductName = "Headphones",
+                Price = 25.99m,
+                Quantity = 3,
+                Category = "Accessories"
+            });
+
+            product.Add(new Product
+            {
+                ProductID = 4,
+                ProductName = "Keyboard",
+                Price = 45.50m,
+                Quantity = 4,
+                Category = "Computer Parts"
+            });
+
+            product.Add(new Product
+            {
+                ProductID = 5,
+                ProductName = "Smart Watch",
+                Price = 120.00m,
+                Quantity = 2,
+                Category = "Wearables"
+            });
+            return View(product);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
