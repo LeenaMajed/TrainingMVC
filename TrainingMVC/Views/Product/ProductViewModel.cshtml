@@ -1,0 +1,25 @@
+﻿@model List<TrainingMVC.Models.ProductViewModel>
+<h1 class="display-5">The Products</h1>
+
+<br />
+<br />
+<table class="table table-bordered table-striped ">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductID</td>
+            <td>@item.ProductName</td>
+            <td>@item.Category</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>

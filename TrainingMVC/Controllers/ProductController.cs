@@ -1,44 +1,20 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 using TrainingMVC.Models;
 
 namespace TrainingMVC.Controllers
 {
-    public class HomeController : Controller
+    public class ProductController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ProductViewModel()
         {
-            return View();
-        }
-        public IActionResult About()
-        {
-            return View();
-        }
-        public IActionResult Contact()
-        {
-            return View();
-        }
-        public IActionResult Training()
-        {
-            return View();
-        }
-        public IActionResult Product()
-        {
-            List<Product> product = new List<Product>();
+            List<ProductViewModel> product = new List<ProductViewModel>();
 
-            product.Add(new Product
+            product.Add(new ProductViewModel
             {
                 ProductID = 1,
                 ProductName = "Phone",
@@ -47,7 +23,7 @@ namespace TrainingMVC.Controllers
                 Category = "Electronics"
             });
 
-            product.Add(new Product
+            product.Add(new ProductViewModel
             {
                 ProductID = 2,
                 ProductName = "Laptop",
@@ -56,7 +32,7 @@ namespace TrainingMVC.Controllers
                 Category = "Electronics"
             });
 
-            product.Add(new Product
+            product.Add(new ProductViewModel
             {
                 ProductID = 3,
                 ProductName = "Headphones",
@@ -65,7 +41,7 @@ namespace TrainingMVC.Controllers
                 Category = "Accessories"
             });
 
-            product.Add(new Product
+            product.Add(new ProductViewModel
             {
                 ProductID = 4,
                 ProductName = "Keyboard",
@@ -74,7 +50,7 @@ namespace TrainingMVC.Controllers
                 Category = "Computer Parts"
             });
 
-            product.Add(new Product
+            product.Add(new ProductViewModel
             {
                 ProductID = 5,
                 ProductName = "Smart Watch",
@@ -82,14 +58,15 @@ namespace TrainingMVC.Controllers
                 Quantity = 2,
                 Category = "Wearables"
             });
-            
-
+            product.Add(new ProductViewModel
+            {
+                ProductID = 6,
+                ProductName = "Hard Disk",
+                Price = 55.50m,
+                Quantity = 3,
+                Category = "Computer Parts"
+            });
             return View(product);
-        }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
