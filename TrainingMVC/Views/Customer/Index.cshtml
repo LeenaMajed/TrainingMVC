@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Customer>
+
+<h1 class="display-5">The Customers</h1>
+
+<br />
+<br />
+<table class="table table-bordered table-striped ">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>MobileNo</th>
+        <th>City</th>
+        <th>Details</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CustomerID</td>
+            <td>@item.CustomerName</td>
+            <td>@item.Email</td>
+            <td>@item.MobileNo</td>
+            <td>@item.City</td>
+            <td><a asp-controller="Customer" asp-action="Details" asp-route-id="@item.CustomerID"> view</a></td>
+        </tr>
+    }
+</table>
