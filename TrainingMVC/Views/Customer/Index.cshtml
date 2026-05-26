@@ -7,8 +7,15 @@
 
 <h1 class="display-5">The Customers</h1>
 
-<br />
-<br />
+
+
+<td>
+    <a asp-controller="Customer" asp-action="Create" class="btn btn-primary btn-sm float-end">
+    +    Create a new customer
+    </a>
+    <br/>
+    <br />
+</td>
 <table class="table table-bordered table-striped ">
     <tr>
         <th>ID</th>
@@ -16,7 +23,7 @@
         <th>Email</th>
         <th>MobileNo</th>
         <th>City</th>
-        <th>Details</th>
+        <th colspan="2" class="text-center">Actions</th>
     </tr>
 
     @foreach (var item in Model)
@@ -28,6 +35,8 @@
             <td>@item.MobileNo</td>
             <td>@item.City</td>
             <td><a asp-controller="Customer" asp-action="Details" asp-route-id="@item.CustomerID"> view</a></td>
+            
+            <td><a asp-controller="Customer" asp-action="Edit" asp-route-id="@item.CustomerID"> edit</a></td>
         </tr>
     }
 </table>
