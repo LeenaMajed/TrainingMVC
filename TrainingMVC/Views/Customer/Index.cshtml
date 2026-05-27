@@ -1,29 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model List<Customer>
+﻿@model List<Customer>
 
 <h1 class="display-5">The Customers</h1>
 
+<div class="d-flex justify-content-between mb-5">
 
+   
+    <form asp-controller="Customer"asp-action="Search" method="get"
+          class="d-flex">
 
-<td>
-    <a asp-controller="Customer" asp-action="Create" class="btn btn-primary btn-sm float-end">
-    +    Create a new customer
+        <input type="text" name="searchName" class="form-control me-2"  placeholder="Search by name" />
+        <input type="text"name="city" class="form-control" placeholder="Filter by city" />
+        <button type="submit" class="btn btn-dark">
+            Search
+        </button>
+    </form>
+    
+  
+    <a asp-controller="Customer"
+           asp-action="Create"
+           class="btn btn-primary">
+        + Create a New Customer
     </a>
-    <br/>
-    <br />
-</td>
-<table class="table table-bordered table-striped ">
+
+
+
+</div>
+
+<table class="table table-bordered table-striped">
+
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th>MobileNo</th>
+        <th>Mobile No</th>
         <th>City</th>
-        <th colspan="2" class="text-center">Actions</th>
+        <th colspan="3" class="text-center">Actions</th>
     </tr>
 
     @foreach (var item in Model)
@@ -34,9 +45,34 @@
             <td>@item.Email</td>
             <td>@item.MobileNo</td>
             <td>@item.City</td>
-            <td><a asp-controller="Customer" asp-action="Details" asp-route-id="@item.CustomerID"> view</a></td>
-            
-            <td><a asp-controller="Customer" asp-action="Edit" asp-route-id="@item.CustomerID"> edit</a></td>
-        </tr>
+
+            <td>
+                <a asp-controller="Customer"
+                       asp-action="Details"
+                       asp-route-id="@item.CustomerID"
+                       class="btn btn-info btn-sm">
+                    View
+                </a>
+            </td>
+
+            <td>
+                <a asp-controller="Customer"
+                       asp-action="Edit"
+                       asp-route-id="@item.CustomerID"
+                       class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+            </td>
+
+            <td>
+                <a asp-controller="Customer"
+                       asp-action="Delete"
+                       asp-route-id="@item.CustomerID"
+                       class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+                </tr>
     }
+            
 </table>

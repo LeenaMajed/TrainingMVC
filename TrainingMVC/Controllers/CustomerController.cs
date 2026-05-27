@@ -23,6 +23,29 @@ namespace TrainingMVC.Controllers
             var customer = _context.Customers.FirstOrDefault(x => x.CustomerID==id);
             return View(customer);
         }
+        public IActionResult Search(string searchName, string city)
+        {
+            var customers = _context.Customers.AsQueryable();
+
+          
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                customers = customers.Where(x =>
+                    x.CustomerName.Contains(searchName));
+            }
+
+           
+            if (!string.IsNullOrEmpty(city))
+            {
+                customers = customers.Where(x =>
+                    x.City.Contains(city));
+            }
+
+            return View("Index",customers.ToList());
+        }
+
+        
+
         public IActionResult Create()
         {
            
@@ -40,7 +63,7 @@ namespace TrainingMVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(customer);
         }
 
         public IActionResult Edit(int id)
@@ -48,7 +71,7 @@ namespace TrainingMVC.Controllers
             var customers = _context.Customers.Find(id);
             return View(customers);
         }
-        [HttpPost]
+        
         [HttpPost]
         public IActionResult Edit(Customer customer)
         {
@@ -72,6 +95,30 @@ namespace TrainingMVC.Controllers
             }
 
             return View(customer);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var customer = _context.Customers.Find(id);
+
+            return View(customer);
+        }
+       
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var customer = _context.Customers.Find(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            _context.Customers.Remove(customer);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
 
